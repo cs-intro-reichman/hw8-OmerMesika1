@@ -31,7 +31,7 @@ public class Network {
     public User getUser(String name) {
         //// Replace the following statement with your code
         for(int i=0;i<userCount;i++) {
-            if (users[i].getName().equals(name)) {
+            if (users[i].getName().toLowerCase().equals(name.toLowerCase())) {
                 return users[i];
             }
         } 
@@ -58,9 +58,10 @@ public class Network {
         //// Replace the following statement with your code
         int marker1 = -1;
         int marker2 = -1;
+        if(name2==null || name1==null) return false;
         for(int i=0; i<userCount;i++) {
             if (users[i].getName().equals(name1)) marker1 = i;
-            if (users[i].getName().equals(name1)) marker2 = i;
+            if (users[i].getName().equals(name2)) marker2 = i;
         }if (marker1 == -1 || marker2 == -1 ) return false;
         return (users[marker1].addFollowee(name2)) ; 
    
@@ -88,9 +89,9 @@ public class Network {
      *  The user who appears the most in the follow lists of all the users. */
     public String mostPopularUser() {
         //// Replace the following statement with your code
-        int most = -1;
+        int most = 0;
         for(int i=0;i<userCount;i++) {
-            if(most<users[i].getfCount()) most = i;
+            if(users[most].getfCount()<users[i].getfCount()) most = i;
         }
         if(most==-1) return null;
         return users[most].getName();
@@ -116,7 +117,7 @@ public class Network {
         for(int j=0;j<users[i].getfCount();j++) {
             ans += " " + users[i].getfFollows()[j] + " ";
         }
-        ans += "\n";
+        if (i!=userCount-1) ans += "\n";
        }
        return ans;
     }
