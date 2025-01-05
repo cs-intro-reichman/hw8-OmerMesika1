@@ -2,7 +2,6 @@ public class TestHandler {
     private Tester tester;
     
     public TestHandler() {
-        toStringTest2();
         this.tester = new Tester();
     }
 
