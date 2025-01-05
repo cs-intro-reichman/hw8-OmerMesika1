@@ -131,9 +131,9 @@ public class Network {
        String ans = "Network:";
        for(int i=0;i<userCount;i++) {
         ans+= "\n";
-        ans += users[i].getName();
+        ans += users[i].getName()+" -> ";
         for(int j=0;j<users[i].getfCount();j++) {
-            ans += " -> " + users[i].getfFollows()[j] + " ";
+            ans +=  + users[i].getfFollows()[j] + " ";
         }
        }
        return ans;
