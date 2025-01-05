@@ -48,7 +48,7 @@
             if (follows[i]==null && name!=null)  return false;
             if (follows[i]!=null && name==null)  return false;
             if (follows[i]==null && name==null)  return true;
-            if (name.equals(follows[i]))  return true;
+            if (name.toLowerCase().equals(follows[i].toLowerCase()))  return true;
         }
         return false;
     }
@@ -74,7 +74,9 @@
        }
        for(int i=0;i<fCount;i++) {
         follows[i]=temp[i];
-       } return true;
+       }
+       fCount--; 
+       return true;
     }
 
     /** Counts the number of users that both this user and the other user follow.
