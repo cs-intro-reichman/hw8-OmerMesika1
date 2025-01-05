@@ -2,6 +2,7 @@ public class TestHandler {
     private Tester tester;
     
     public TestHandler() {
+        System.out.println(toStringTest3());
         this.tester = new Tester();
     }
 
@@ -1434,6 +1435,9 @@ public class TestHandler {
         } catch (Exception e) {
             actual = TesterMessagesEnum.ERROR + e.getMessage();
         }
+        // del
+System.out.println(actual);
+        //
         return this.tester.test("Predefined network with follow relationships", expected, actual);
     }
     
