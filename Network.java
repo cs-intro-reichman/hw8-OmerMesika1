@@ -87,15 +87,26 @@ public class Network {
 
     /** Computes and returns the name of the most popular user in this network: 
      *  The user who appears the most in the follow lists of all the users. */
-    public String mostPopularUser() {
+   public String mostPopularUser() {
         //// Replace the following statement with your code
-        int most = 0;
-        for(int i=0;i<userCount;i++) {
-            if(users[most].getfCount()<users[i].getfCount()) most = i;
+        int most = 0; int index = 0;
+        if (userCount==0) return null;
+        int[] counter = new int[userCount];
+        for(int i=0;i<this.userCount;i++) {
+            for(int j=0;j<users[i].getfCount();j++) {
+                for(int x=0;x<counter.length;x++) {
+                    if ((users[i].getfFollows()[j].equals(users[x].getName()))) {
+                        counter[x] ++;
+                    }
+                }
+            }
         }
-        if(most==-1) return null;
-        return users[most].getName();
-    }
+
+        for(int i = 0; i<counter.length;i++) {
+            if(most<counter[i]) { most = counter[i]; index = i; }
+        }
+        return users[index].getName();
+    } 
 
     /** Returns the number of times that the given name appears in the follows lists of all
      *  the users in this network. Note: A name can appear 0 or 1 times in each list. */
@@ -111,7 +122,7 @@ public class Network {
     // Returns a textual description of all the users in this network, and who they follow.
     public String toString() {
        //// Replace the following statement with your code
-       String ans = "Network: \n";
+       String ans = "Network:\n";
        for(int i=0;i<userCount;i++) {
         ans += users[i];
         for(int j=0;j<users[i].getfCount();j++) {
