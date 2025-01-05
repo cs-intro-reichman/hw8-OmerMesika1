@@ -133,7 +133,7 @@ public class Network {
         ans+= "\n";
         ans += users[i].getName()+" -> ";
         for(int j=0;j<users[i].getfCount();j++) {
-            ans +=  + users[i].getfFollows()[j] + " ";
+            ans +=users[i].getfFollows()[j] + " ";
         }
        }
        return ans;
