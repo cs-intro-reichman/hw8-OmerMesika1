@@ -2,7 +2,6 @@ public class TestHandler {
     private Tester tester;
     
     public TestHandler() {
-        System.out.println(toStringTest3());
         this.tester = new Tester();
     }
 
