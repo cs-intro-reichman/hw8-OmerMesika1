@@ -130,7 +130,7 @@ public class Network {
        //// Replace the following statement with your code
        String ans = "Network:";
        for(int i=0;i<userCount;i++) {
-        if (i!=userCount-1) ans += "\n";
+        ans += "\n";
         ans += users[i];
         for(int j=0;j<users[i].getfCount();j++) {
             ans += " " + users[i].getfFollows()[j] + " ";
