@@ -59,6 +59,7 @@ public class Network {
         int marker1 = -1;
         int marker2 = -1;
         if(name2==null || name1==null) return false;
+        if(name1.toLowerCase().equals(name2.toLowerCase())) return false;
         for(int i=0; i<userCount;i++) {
             if (users[i].getName().equals(name1)) marker1 = i;
             if (users[i].getName().equals(name2)) marker2 = i;
@@ -73,16 +74,21 @@ public class Network {
         //// Replace the following statement with your code
         int marker1 = 0;
         for(int i=0; i<userCount;i++) {
-            if (users[i].getName().equals(name)) marker1 = i;
+            if (users[i].getName().toLowerCase().equals(name.toLowerCase())) marker1 = i;
         }
-        int markerWho2 = -1;
-        for(int i=0;i<users[marker1].getfCount();i++) {
+        int index;
+        if(marker1!=0)  { index = 0; }
+        else { index = 1; }
+
+        int sumax = 0;
+        for(int i=0;i<userCount;i++) {
             if (marker1!=i) {
                 int cur = users[marker1].countMutual(users[i]);
-                if(cur > markerWho2 ) markerWho2 = cur;
+                if(cur > users[marker1].countMutual(users[index])) { index = i ; sumax = cur; }
             }
         }
-        return users[markerWho2].getName();
+        String ret = users[index].getName();
+        return ret;
     }
 
     /** Computes and returns the name of the most popular user in this network: 
@@ -122,13 +128,13 @@ public class Network {
     // Returns a textual description of all the users in this network, and who they follow.
     public String toString() {
        //// Replace the following statement with your code
-       String ans = "Network:\n";
+       String ans = "Network:";
        for(int i=0;i<userCount;i++) {
+        if (i!=userCount-1) ans += "\n";
         ans += users[i];
         for(int j=0;j<users[i].getfCount();j++) {
             ans += " " + users[i].getfFollows()[j] + " ";
         }
-        if (i!=userCount-1) ans += "\n";
        }
        return ans;
     }
